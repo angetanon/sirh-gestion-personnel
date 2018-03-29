@@ -15,11 +15,18 @@ public class Collaborateur {
 	private String photo;
 	private ZonedDateTime dateHeureCreation;
 	private boolean actif;
+	private static int matri = 100000;
+	private String inititulePoste;
+	private Departement departement ;
+	
+	
 	
 	
 	public Collaborateur() {
 		super();
-		// TODO Auto-generated constructor stub
+		
+		
+		
 	}
 
 
@@ -28,8 +35,10 @@ public class Collaborateur {
 	}
 
 
-	public void setMatricule(String matricule) {
-		this.matricule = matricule;
+	public void setMatricule(String matri) {
+		this.matricule = "M"+this.matri;
+		this.matri++;
+		
 	}
 
 
@@ -129,6 +138,38 @@ public class Collaborateur {
 				+ dateDeNaissance + ", adresse=" + adresse + ", numDeSecuSocial=" + numDeSecuSocial + ", emailPro="
 				+ emailPro + ", photo=" + photo + ", dateHeureCreation=" + dateHeureCreation + ", actif=" + actif + "]";
 	}
+
+
+	public static int getMatri() {
+		return matri;
+	}
+
+
+	public static void setMatri(int matri) {
+		Collaborateur.matri = matri;
+	}
+
+
+	public String getInititulePoste() {
+		return inititulePoste;
+	}
+
+
+	public void setInititulePoste(String inititulePoste) {
+		this.inititulePoste = inititulePoste;
+	}
+
+
+	public Departement getDepartement() {
+		return departement;
+	}
+
+
+	public void setDepartement(Departement departement) {
+		this.departement = departement;
+	}
+
+
 	
 	
 	

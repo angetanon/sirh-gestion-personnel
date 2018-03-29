@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -15,19 +15,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<!--
-        <style>
-        .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            background-color: gray;
 
-            text-align: center;
-        }
-    </style>
--->
 
 
 <title>Creation collaborateur</title>
@@ -39,8 +27,8 @@
 	<div class="container-fluid">
         <div class="row card">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand " href="logo.jpeg">
-                    <img src="logo.png" class="img-fluid max-width: 6rem" alt="LOGO">
+                <a class="navbar-brand " href="<%=request.getContextPath()%>/images/logo.jpeg">
+                    <img src="<%=request.getContextPath()%>/images/logo.png" class="img-fluid max-width: 6rem" alt="LOGO">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -86,7 +74,7 @@
 				<div class="col">Nom</div>
 				<div class="form-group col-lg-6">
 
-					<input id="nom" name="nom" type="text" class="form-control"
+					<input id="nom" name="nom" type="text" class="form-control needs-validation"
 						placeholder="Le nom est obligatoire" required>
 				</div>
 			</div>
@@ -122,7 +110,7 @@
 				<div class="form-group col-lg-6">
 
 					<input id="numSecu" name="numSecu" type="text" class="form-control"
-						placeholder="Le numéro de sécurité social est obligatoire"
+						placeholder="Le numéro de sécurité social est obligatoire : 15 caractères requis"
 						required>
 				</div>
 			</div>
@@ -159,24 +147,24 @@
 					<div class="container">
 						<div class="row">
 							<div class="form-group col-lg-6">Nom</div>
-							<div class="form-group col-lg-6">......................................................</div>
+							<div class="form-group col-lg-6" id="outputNom">......................................................</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-lg-6">Prénom</div>
-							<div class="form-group col-lg-6">......................................................</div>
+							<div class="form-group col-lg-6" id="outputPrenom">......................................................</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-lg-6">Date de naissance</div>
-							<div class="form-group col-lg-6">......................................................</div>
+							<div class="form-group col-lg-6" id="outputDateNaissance">......................................................</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-lg-6">Adresse</div>
-							<div class="form-group col-lg-6">......................................................</div>
+							<div class="form-group col-lg-6" id="outputAdresse">......................................................</div>
 						</div>
 						<div class="row">
-							<div class="form-group col-lg-6">Numéro de sécurité social</div>
+							<div class="form-group col-lg-6" >Numéro de sécurité social</div>
 
-							<div class="form-group col-lg-6">......................................................</div>
+							<div class="form-group col-lg-6" id="outputNumSecuSocial">......................................................</div>
 						</div>
 					</div>
 
@@ -212,9 +200,45 @@
 			crossorigin="anonymous"></script>
 
 		<script>
-		/*document.querrySelector("#creerModal").addEventListener("click", function(){
+		//bouton modal
+		document.querySelector("#creerModal").addEventListener("click", function(){
 			$("#exampleModal").modal();
-		})*/
+		});
+		//Affichage des saisies du formulaire dans le modal
+		$("#nom").change(function(){
+
+			  $("#outputNom").html($(this).val());
+
+			});
+		
+		$("#prenom").change(function(){
+
+			  $("#outputPrenom").html($(this).val());
+
+			});
+		$("#dateNaissance").change(function(){
+
+			  $("#outputDateNaissance").html($(this).val());
+
+			});
+		$("#adresse").change(function(){   
+
+			  $("#outputAdresse").html($(this).val());
+
+			});
+		$("#numSecu").change(function(){
+
+			  $("#outputNumSecuSocial").html($(this).val());
+
+			});
+		
+		
+		
+		//soumettre la requete (recuperer les parametres) saisies dans le formulaire
+		document.querySelector("#confirmer").addEventListener("click", function(){
+			//redirection vers la liste des collaborateurs
+			document.forms[0].submit();
+		});
 		
 		
 		
